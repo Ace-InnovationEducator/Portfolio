@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            body{
+                background-image: url(Kaboom.gif), url(pageFlip.webp);
+                background-attachment:fixed;
+                background-repeat: no-repeat, no-repeat;
+                background-size: 50%, cover;
+                background-position: center;
+                filter: saturate(120%);
+            }
+
+            /*font face*/
+            @font-face {
+                font-family: Anime_bld;
+                src: url(animeace2_bld.otf);
+            }
+            @font-face {
+                font-family: Anime_ital;
+                src: url(animeace2_ital.otf);
+            }
+            @font-face {
+                font-family: Anime_reg;
+                src: url(animeace2_reg.otf);
+            }
+            @font-face {
+                font-family: BADABB;
+                src: url(BADABB__.TTF);
+            }
+            @font-face {
+                font-family: Bouncy_Black;
+                src: url(Bouncy-Black-PERSONAL_USE_ONLY.otf);
+            }
+            @font-face {
+                font-family: Bouncy_Thin;
+                src: url(Bouncy-Thin-PERSONAL_USE_ONLY.otf);
+            }
+            @font-face {
+                font-family: Bouncy;
+                src: url(Bouncy-PERSONAL_USE_ONLY.otf);
+            }
+
+
+            /*Classes to clear specified float*/
+            .clear-R{
+                clear: right;
+            }
+            .clear-L{
+                clear: left;
+            }
+            .clear-B{
+                clear: both;
+            }
+
+            /*Header, P, Img, Etc. Tags*/
+            .gameIMG{
+                max-width: 190px;
+                height: 180px;
+                border-radius: 50%;
+                filter: drop-shadow(6px 5px 2px #000000) saturate(150%);
+                margin-left: 8rem;
+            }
+            nav{
+                width: 112%;
+            }
+            p.paraAquamarine{
+                font-family: Anime_reg;
+                font-size: medium;
+                color: white;
+                display: none;
+            }
+            p.paraWhite{
+                font-family: BADABB;
+                font-size: medium;
+                color: rgb(37, 200, 146);
+                display: none;
+            }
+            p#expPara{
+                font-size: 16px;
+                font-family: Anime_reg;
+            }
+
+            /*Layout of block*/
+            button.aquamarine{
+                display: block;
+                width: 30%;
+                height: 150px;
+                float: left;
+                border-radius: 0px 30px 15px 0px ;
+                filter: drop-shadow(5px 4px 3px #000);
+                margin-left: 0px;
+                margin-bottom: 5px;
+
+                padding: 10px;
+                font-family: Bouncy_Black;
+                color: white;
+                text-align: center;
+                font-size: 24px;
+            }
+            button.white{
+                display: block;
+                width: 30%;
+                height: 150px;
+                float: right;
+                border-radius: 30px 0px 0px 15px;
+                filter: drop-shadow(5px 4px 3px #000);
+                margin-right: 0px;
+                margin-top: 15px;
+
+                padding: 10px;
+                font-family: Bouncy_Black;
+                color: rgb(37, 200, 146);
+                text-align: center;
+                font-size: 24px;
+            }
+
+            /*Hover effect*/
+            button.aquamarine:hover{
+                background-color: rgb(37, 200, 146);
+                display: block;
+                width: 50%;
+                height: 300px;
+                float: left;
+                border-radius: 0px 30px 15px 0px ;
+                filter: drop-shadow(5px 4px 3px #000);
+                margin-left: 0px;
+
+                padding-top: 10px;
+                font-family: Anime_ital;
+                font-size:44px;
+                text-align: center;
+            }
+            button.white:hover{
+                background-color: white;
+                display: block;
+                width: 50%;
+                height: 300px;
+                float: right;
+                border-radius: 30px 0px 0px 15px;
+                filter: drop-shadow(5px 4px 3px #000);
+                margin-right: 0px;
+
+                padding-top: 10px;
+                font-family: Anime_bld;
+                font-size:44px;
+                text-align: center;
+            }
+            p.paraAquamarine:hover{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: medium;
+                color: white;
+                width: 100%;
+                height: 20%;
+                overflow: visible;
+            }
+            p.paraWhite:hover{
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: medium;
+                color: rgb(37, 200, 146);
+                width: 100%;
+                overflow: visible;
+            }
+            img.gameIMG:hover{
+                width: 200px;
+                height: 190px;
+                border-radius: 50%;
+                filter: drop-shadow(6px 5px 2px #000000) saturate(150%);
+                margin-left: 8rem;
+            }
+
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-image: url("colorfulSmoke.gif");
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 23px;
+                border: 1px solid #888;
+                width: 80%; /* Could be more or less, depending on screen size */
+                height: 60%;
+                font-family: BADABB;
+                color: rgb(37, 200, 146);
+                font-size:14px;
+                text-align: unset;
+
+                border-radius: 20% 2% 20% 2%;
+            }
+
+            /* The Close Button */
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            div.gallery{
+                margin: 15px;
+                border: 8px outset #13e068;
+                float: left;
+                width: 220px;
+                filter: drop-shadow(6px 5px 3px #000);
+            }
+
+            div.gallery img{
+                width: 100%;
+                height: 200px;
+            }
+
+            div.desc{
+                padding: 15px;
+                text-align: center;
+                background-color: aqua;
+                font-size: 20px;
+                color: #0fad51;
+            }
+
+            /*Tooltip for logo img*/
+            .tooltip {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black;
+            }
+
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 50px;
+                height: 50px;
+                background-color: #00cde8;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 15px;
+                position: bottom;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -10px;
+                opacity: 0;
+                transition: opacity 0.3s;
+                font-family: Anime_ital;
+                font-size: 9px;
+            }
+
+            .tooltip .tooltiptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #00cde8 transparent transparent transparent;
+            }
+
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            /*Columns in Experience modal*/
+            .row {
+                display: flex;
+            }
+
+            /* Create two equal columns that sits next to each other */
+            .column {
+                flex: 50%;
+                padding: 10px;
+                height: 300px; /* Should be removed. Only for demonstration */
+            }
+
+            /*Responsive*/
+            @media only screen and (max-width: 700px) {
+                .aquamarine, .white, .appleMusic, .paraWhite, .gameIMG, .paraAquamarine, .tooltip, .row, .column, .gallery, .desc, .modal, .modal-content {
+                    width: 49.99999%;
+                    margin: 6px 0;
+                }
+                .appleMusic{
+                    visibility: hidden;
+                }
+            }
+            
+            @media only screen and (max-width: 500px) {
+                .aquamarine, .white, .appleMusic, .paraWhite, .gameIMG, .paraAquamarine, .tooltip, .row, .column, .gallery, .desc, .modal, .modal-content {
+                    width: 100%;
+                }
+            }
+  
+            .clearfix:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+
+        </style>
+    </head>
+
+    <body>
+        <nav>
+            <button class="aquamarine" id="about" style="background-color: rgba(255, 0, 0, 0.709);">
+                <h2 id="green" style="color: rgb(255, 0, 0);">About!</h2>
+                <p class="paraAquamarine">Asa Wallace is a Baltimore Innovation Educator at The Hidden Genius Project. 
+                    He characterizes himself as a philomath, due to his inquisitive mind and open-mindedness. 
+                    He is a graduate from Temple University with a Bachelor's in Information Science and Technology. 
+                    He not only has experience working with Black youth, but he is committed to the advancement of the 
+                    Black community. Aside from spending his time educating, you can find him exploring his creativity 
+                    and imagination. He enjoys painting, drawing, sketching, designing, sewing, and experimenting with 
+                    various art forms. Asa is thrilled to join a team of like-minded individuals that have an 
+                    opportunity to inspire Black youth to explore their passions in technology, showcase their genius, 
+                    and make an impact in the world.</p>
+            </button>
+            <div class="tooltip">
+                <img src="ErronBlack.gif" alt="Erron Black" class="gameIMG"><br><br><br><span class="tooltiptext">Welcome to the dopest page! Take a look around my site!</span>
+            </div>
+            <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" frameborder="0" height="150" style="width:30%;max-width:570px;overflow:hidden;border-radius:10px;float:right;margin-right: 12rem;margin-top: 0.5rem;filter: drop-shadow(2px 3px 3px #000);float: right;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/not-like-us/1744776162?i=1744776167"></iframe>
+        </nav>
+
+        <div class="clear-L appleMusic">
+        </div>
+
+        <button id="proj" class="clear-R white" style="background-color: rgba(0, 211, 253, 0.715);">
+            <h2 id="white" style="color: rgb(0, 211, 253);">Projects!!</h2>
+        </button>
+
+        <button id="exp" class="clear-R aquamarine" style="background-color: rgba(50, 205, 50, 0.743);">
+            <h2 id="green" style="color: rgb(50, 205, 50);">Experience!!!</h2>
+        </button>
+
+        <button id="contact" class="clear-L white" style="background-color: rgba(255, 255, 0, 0.7);">
+            <h2 id="white" style="color: rgb(255, 255, 0);">Contact!</h2>
+        </button>
+
+        <button id="goals" class="clear-R aquamarine" style="background-color: rgba(255, 0, 208, 0.729);">
+            <h2 id="green" style="color: rgb(255, 0, 208);">Goals!!</h2>
+        </button>
+        
+        
+
+        <!--Div's for about modal-->
+        <div id="aboutModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h1 id="green" style="margin-left: 100px;"><u>About</u></h1>
+                <span class="close">&times;</span>
+                <p style="font-size: 21px; margin-left: 100px;">Asa Wallace is a Baltimore Innovation Educator at The Hidden Genius Project. 
+                    He characterizes himself as a philomath, due to his inquisitive mind and open-mindedness. 
+                    He is a graduate from Temple University with a Bachelor's in Information Science and Technology. 
+                    He not only has experience working with Black youth, but he is committed to the advancement of the 
+                    Black community. Aside from spending his time educating, you can find him exploring his creativity 
+                    and imagination. He enjoys painting, drawing, sketching, designing, sewing, and experimenting with 
+                    various art forms. Asa is thrilled to join a team of like-minded individuals that have an 
+                    opportunity to inspire Black youth to explore their passions in technology, showcase their genius, 
+                    and make an impact in the world.</p>
+                <img src="temple.jpeg" alt="Temple University" style="width: 200px; height: 200px; border: 6px solid rgb(37, 200, 146);margin: 8px;">
+                <img src="GTAV.gif" alt="Grand Theft Auto V" style="width: 200px; height: 200px; border: 6px solid rgb(37, 200, 146);margin: 8px;">
+                <img src="infamous.gif" alt="Infamous Second Son" style="width: 200px; height: 200px; border: 6px solid rgb(37, 200, 146);margin: 8px;">
+                <img src="puerto-vallarta-airport.gif" alt="Puerto Vallarta" style="width: 200px; height: 200px; border: 6px solid rgb(37, 200, 146);margin: 8px;">
+                <img src="DemonSlayer.png" alt="Demon Slayer" style="width: 200px; height: 200px; border: 6px solid rgb(37, 200, 146);margin: 8px;">
+
+
+            </div>
+          
+        </div>
+
+        <!--Div's for Projects modal-->
+        <div id="projModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h1 id="white" style="margin-left: 100px;"><u>Projects</u></h1>
+                <span class="close">&times;</span>
+                <div class="clear gallery" style="margin-left: 120px;">
+                    <a href="https://github.com/Ace-InnovationEducator/Python-projects/blob/Rock-Paper-Scissors/rockPaperScissors.py">
+                        <img src="rps.jpeg" alt="Rock Paper Scissors">
+                        <div class="desc">My very first python project was a game of Rock Paper Scissors</div>
+                    </a>
+                </div>
+        
+                <div class="gallery">
+                    <a href="https://github.com/Ace-InnovationEducator/Python-projects/blob/Temperature-Converter/temperatureConverter.py">
+                        <img src="fah-cel.jpeg" alt="Fahrenheit to Celsius">
+                        <div class="desc">Fahrenheit to Celsius Converter</div>
+                    </a>
+                </div>
+            </div>
+          
+        </div>
+
+        <!--Div's for Experience modal-->
+        <div id="expModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h1 id="green" style="margin-left: 100px;"><u>Experience</u></h1>
+                <span class="close">&times;</span>
+                <div class="row">
+                    <div class="column">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/LT_wya7uarg?si=lnjDhE3B3QxLh3Jz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="margin-left: 120px;"></iframe>
+                    </div>
+                    <div class="column">
+                        <p id="expPara">The Hidden Genius Project's 15 month immersion program allows geniuses to learn and refine 
+                            skills in programming, while building a community of brothers. During their time in the 
+                            program, they will build their on web portfolio's. By the end of summer 1, your web portfolio
+                            should be completed for End of Summer Celebration.
+                        </p>        
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+
+        <!--Div's for Contact modal-->
+        <div id="conModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2 id="white" style="margin-left: 100px;"><u>Contact</u></h2>
+                <span class="close">&times;</span>
+                <p></p>
+            </div>
+          
+        </div>
+
+        <!--Div's for Goals modal-->
+        <div id="goalsModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2 id="green" style="margin-left: 100px;"><u>Goals</u></h2>
+                <span class="close">&times;</span>
+                <div class="row">
+                    <div class="column">
+                        <div id="year2024">
+                            <h1 style="font-size: 40px; text-align: center;">2024</h1>
+                            <ul style="font-size: 34px;">
+                                <li>Have a successful summer immersion</li>
+                                <li>Finish reading <i>Defining Moments In Black History | Reading Between the Lies</i></li>
+                                <li>Create 10 graphics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="year2025">
+                            <h1 style="font-size: 40px; text-align: center;">2025</h1>
+                            <ul style="font-size: 34px;">
+                                <li>Summer 2 of Immersion ends successfully</li>
+                                <li>Have 2 streams of passive income</li>
+                                <li>Run a 5k!</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+    </body>
+
+    <!--JavaScript-->
+    <script>
+        // Get the modal
+        var aboutmodal = document.getElementById("aboutModal");
+        var projectsmodal = document.getElementById("projModal");
+        var expmodal = document.getElementById("expModal");
+        var contactmodal = document.getElementById("conModal");
+        var goalsmodal = document.getElementById("goalsModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("about");
+        var btn2 = document.getElementById("proj");
+        var btn3 = document.getElementById("exp");
+        var btn4 = document.getElementById("contact");
+        var btn5 = document.getElementById("goals");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span2 = document.getElementsByClassName("close")[1];
+        var span3 = document.getElementsByClassName("close")[2];
+        var span4 = document.getElementsByClassName("close")[3];
+        var span5 = document.getElementsByClassName("close")[4];
+
+        // When the user clicks on the button, open the modal 
+        btn.onclick = function() {
+            aboutmodal.style.display = "block";
+        }
+        btn2.onclick = function(){
+            projectsmodal.style.display = "block";
+        }
+        btn3.onclick = function() {
+            expmodal.style.display = "block";
+        }
+        btn4.onclick = function(){
+            contactmodal.style.display = "block";
+        }
+        btn5.onclick = function() {
+            goalsmodal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            aboutmodal.style.display = "none";
+        }
+        span2.onclick = function(){ 
+            projectsmodal.style.display = "none";
+        }
+        span3.onclick = function() {
+            expmodal.style.display = "none";
+        }
+        span4.onclick = function(){
+            contactmodal.style.display = "none";
+        }
+        span5.onclick = function(){
+            goalsmodal.style.display = "none";
+
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                aboutmodal.style.display = "none";
+            }
+        }
+        window.onclick = function(event){
+            if (event.target == modal) {
+                projectsmodal.style.display = "none";
+            }
+        }
+        window.onclick = function(event){
+            if (event.target == modal) {
+                expmodal.style.display = "none";
+            }
+        }
+        window.onclick = function(event){
+            if (event.target == modal) {
+                contactmodal.style.display = "none";
+            }
+        }
+        window.onclick = function(event){
+            if (event.target == modal) {
+                goalsmodal.style.display = "none";
+            }
+        }
+    </script>
+</html>
